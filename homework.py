@@ -127,8 +127,8 @@ class Running(Training):
         spent_calories: float
         up_number: float
         down_number: float
-        up_number = (run_coeff_1 * self.get_mean_speed() - run_coeff_2) * self.weight
-        down_number = self.M_IN_KM * self.duration * minutes
+        up_number = (run_coeff_1 * self.get_mean_speed() - run_coeff_2) * self.weight * minutes
+        down_number = self.M_IN_KM * self.duration
         spent_calories = up_number / down_number      
         return trunker(spent_calories)
 
@@ -226,4 +226,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
- 
