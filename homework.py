@@ -54,8 +54,8 @@ class InfoMessage:
         self.calories = calories
 
     def get_message(self) -> str:
-        return (f'{mess[0]}, {training_type}, {mess[1]}, {duration}, {mess[2]}, 
-                {distance}, {mess[3]}, {speed}, {mess[4]}, {calories}, {mess[5]}')
+        return  f"""{mess[0]}{self.training_type}{mess[1]}{self.duration} {mess[2]}{self.distance} {mess[3]}
+        {self.speed} {mess[4]}{self.calories}{mess[5]}"""
 
 
 class Training:
@@ -83,13 +83,13 @@ class Training:
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         distance: float
-        distance = action * LEN_STEP / M_IN_KM
+        distance = self.action * self.LEN_STEP / self.M_IN_KM
         return trunker(distance)
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         mean_speed: float
-        mean_speed = get_distance() / duration
+        mean_speed = self.get_distance() / self.duration
         return trunker(mean_speed)
 
     def get_spent_calories(self) -> float:
@@ -99,12 +99,11 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        message: InfoMessage
-        message.training_type = name
-        message.duration = duration
-        message.distance = get_distance()
-        message.speed = get_mean_speed()
-        message.calories = get_spent_calories()
+        message = InfoMessage(self.name,
+                            self.duration, 
+                            self.get_distance(), 
+                            self.get_mean_speed(), 
+                            self.get_spent_calories() )
         return message
 
 
@@ -128,8 +127,8 @@ class Running(Training):
         spent_calories: float
         up_number: float
         down_number: float
-        up_number = (run_coeff_1 * super().get_mean_spead() - run_coeff_2) * super().weight
-        down_number = super().M_IN_KM * super().duration * minutes
+        up_number = (run_coeff_1 * self.get_mean_speed() - run_coeff_2) * self.weight
+        down_number = self.M_IN_KM * self.duration * minutes
         spent_calories = up_number / down_number      
         return trunker(spent_calories)
 
@@ -157,9 +156,9 @@ class SportsWalking(Training):
         spent_calories: float
         first_number: float
         second_number: float
-        first_number = walk_coeff_1 * super().weight
-        second_number = (super().get_mean_spead() ** 2 // height) * walk_coeff_2 * super().weight
-        spent_calories = (first_number + second_number) * super().duration * minutes     
+        first_number = walk_coeff_1 * self.weight
+        second_number = (self.get_mean_speed() ** 2 // self.height) * walk_coeff_2 * self.weight
+        spent_calories = (first_number + second_number) * self.duration * minutes     
         return trunker(spent_calories)
 
 
@@ -182,27 +181,27 @@ class Swimming(Training):
                 ) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
-        self.length_pooi = length_pool
+        self.length_pool = length_pool
         self.count_pool = count_pool
         self.LEN_STEP = flipper_length
-
+        
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         mean_speed: float
-        mean_speed =  length_pool * count_pool / super().M_IN_KM / super().duration
+        mean_speed = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
         return trunker(mean_speed)
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         spent_calories: float
-        spent_calories = (get_mean_speed() + swim_coeff_1) * swim_coeff_2 * super().weight     
+        spent_calories = (self.get_mean_speed() + swim_coeff_1) * swim_coeff_2 * self.weight     
         return trunker(spent_calories)
 
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    sports: Dict[str, Training] = {'RUN': Running
-                                    'WLK': SportsWalking
+    sports: Dict[str, Training] = {'RUN': Running,
+                                    'WLK': SportsWalking,
                                     'SWM': Swimming}
     for sport in sports:
         if sport == workout_type:
@@ -227,3 +226,4 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
+ 
