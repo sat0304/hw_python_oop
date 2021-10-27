@@ -39,6 +39,7 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
+   
     def __init__(self,
                 training_type: str,
                 duration: float,
