@@ -3,6 +3,8 @@ from typing import List, Dict
 minutes: int = 60
 milli: int = 1000
 one: int = 1
+step_lenght: float = 0.65
+flipper_lenght: float = 1.38
 run_coeff_1: int = 18
 run_coeff_2: int = 20
 walk_coeff_1: float = 0.035
@@ -77,7 +79,7 @@ class Training:
         self.duration = duration
         self.weight = weight
         self.M_IN_KM = milli
-        self.LEN_STEP = 0.65
+        self.LEN_STEP = step_lenght
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -174,7 +176,13 @@ class Swimming(Training):
         self.name = type_training[3]
         self.length_pool = length_pool
         self.count_pool = count_pool
-        self.LEN_STEP = 1.38
+        self.LEN_STEP = flipper_lenght
+
+    def get_distance(self) -> float:
+        """Получить дистанцию в км."""
+        distance: float
+        distance = self.action * self.LEN_STEP / self.M_IN_KM
+        return distance
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
@@ -208,8 +216,8 @@ def read_package(workout_type: str, data: list) -> Training:
 def main(training: Training) -> None:
     """Главная функция."""
     info: str
-    info = training.show_training_info().get_message()
-    print(F'{info}')
+    info = training.show_training_info()
+    print(InfoMessage.get_message(info))
 
 
 if __name__ == '__main__':
