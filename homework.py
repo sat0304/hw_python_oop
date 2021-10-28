@@ -71,7 +71,7 @@ class Training:
     weight: float
     weight: float
     M_IN_KM: int
-    LEN_STEP: float
+    LEN_STEP: float = step_lenght
 
     def __init__(self, action: int, duration: float, weight: float) -> None:
         self.name = type_training[0]
@@ -84,7 +84,7 @@ class Training:
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         distance: float
-        distance = self.action * self.LEN_STEP / self.M_IN_KM
+        distance = self.action * Training.LEN_STEP / self.M_IN_KM
         return distance
 
     def get_mean_speed(self) -> float:
@@ -167,7 +167,7 @@ class Swimming(Training):
     weight: float
     length_pool: int
     count_pool: int
-    LEN_STEP: float
+    LEN_STEP: float = flipper_lenght
 
     def __init__(
             self, action: int, duration: float, weight: float,
@@ -181,7 +181,7 @@ class Swimming(Training):
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         distance: float
-        distance = self.action * self.LEN_STEP / self.M_IN_KM
+        distance = self.action * Swimming.LEN_STEP / self.M_IN_KM
         return distance
 
     def get_mean_speed(self) -> float:
