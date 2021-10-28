@@ -1,8 +1,6 @@
 from typing import List, Dict
 
 minutes: int = 60
-step_length: float = 0.65
-flipper_length: float = 1.38
 milli: int = 1000
 one: int = 1
 run_coeff_1: int = 18
@@ -79,7 +77,7 @@ class Training:
         self.duration = duration
         self.weight = weight
         self.M_IN_KM = milli
-        self.LEN_STEP = step_length
+        self.LEN_STEP = 0.65
 
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
@@ -176,7 +174,7 @@ class Swimming(Training):
         self.name = type_training[3]
         self.length_pool = length_pool
         self.count_pool = count_pool
-        self.LEN_STEP = flipper_length
+        self.LEN_STEP = 1.38
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
@@ -211,7 +209,7 @@ def main(training: Training) -> None:
     """Главная функция."""
     info: str
     info = training.show_training_info().get_message()
-    print(info)
+    print(F'{info}')
 
 
 if __name__ == '__main__':
