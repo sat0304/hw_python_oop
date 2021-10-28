@@ -13,13 +13,13 @@ swim_coeff_1: float = 1.1
 swim_coeff_2: int = 2
 
 type_training: List[str] = [
-    f"""'Training',
+    'Training',
     'Running',
     'SportsWalking',
-    'Swimming'"""]
+    'Swimming']
 
 mess: List[str] = [
-    f"""'Тип тренировки: ',
+    'Тип тренировки: ',
     ';',
     ' Длительность: ',
     ' ч.;',
@@ -28,7 +28,7 @@ mess: List[str] = [
     ' Ср. скорость: ',
     ' км/ч;',
     ' Потрачено ккал: ',
-    '.'"""]
+    '.']
 
 
 def trunker(number: float) -> float:
@@ -142,7 +142,7 @@ class SportsWalking(Training):
     height: float
 
     def __init__(self, action: int, duration: float, weight: float,
-                height: float) -> None:
+        height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
         self.height = height
@@ -171,7 +171,7 @@ class Swimming(Training):
     LEN_STEP: float
 
     def __init__(self, action: int, duration: float, weight: float,
-                length_pool: int, count_pool: int) -> None:
+        length_pool: int, count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
