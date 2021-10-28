@@ -18,19 +18,6 @@ type_training: List[str] = [
     'SportsWalking',
     'Swimming']
 
-m: List[str] = [
-    'Тип тренировки: ',
-    ';',
-    ' Длительность: ',
-    ' ч.;',
-    ' Дистанция: ',
-    ' км;',
-    ' Ср. скорость: ',
-    ' км/ч;',
-    ' Потрачено ккал: ',
-    '.']
-
-
 def trunker(number: float) -> float:
     """Функция оставляет только три цифры после запятой."""
     result: float
@@ -57,9 +44,9 @@ class InfoMessage:
 
     def get_message(self) -> str:
         text: str
-        text = (f"""{m[0]}{self.training_type}{m[1]}{m[2]}{self.duration}{m[3]}\
-            {m[4]}{self.distance}{m[5]}{m[6]}{self.speed}{m[7]}\
-            {m[8]}{self.calories}{m[9]}""")
+        text = f'Тип тренировки: {self.training_type};  Длительность: \
+        {self.duration} ч.;  Дистанция: {self.distance} км; Ср. скорость: \
+         {self.speed} км/ч; Потрачено ккал: {self.calories}.'
         return text
 
 
