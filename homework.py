@@ -2,7 +2,6 @@ from typing import List, Dict
 
 minutes: int = 60
 milli: int = 1000
-one: int = 1
 step_lenght: float = 0.65
 flipper_lenght: float = 1.38
 run_coeff_1: int = 18
@@ -17,13 +16,6 @@ type_training: List[str] = [
     'Running',
     'SportsWalking',
     'Swimming']
-
-
-def trunker(number: float) -> float:
-    """Функция оставляет только три цифры после запятой."""
-    result: float
-    result = number * milli // one / milli
-    return result
 
 
 class InfoMessage:
@@ -90,10 +82,10 @@ class Training:
         """Вернуть информационное сообщение о выполненной тренировке."""
         message = InfoMessage(
             self.name,
-            trunker(self.duration),
-            trunker(self.get_distance()),
-            trunker(self.get_mean_speed()),
-            trunker(self.get_spent_calories()))
+            self.duration,
+            self.get_distance(),
+            self.get_mean_speed(),
+            self.get_spent_calories())
         return message
 
 
@@ -204,8 +196,7 @@ def read_package(workout_type: str, data: list) -> Training:
 def main(training: Training) -> None:
     """Главная функция."""
     info: InfoMessage = training.show_training_info()
-    print(InfoMessage.get_message(info))
-
+    print(info.get_message())
 
 if __name__ == '__main__':
     packages = [
