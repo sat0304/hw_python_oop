@@ -70,7 +70,7 @@ class Training:
     duration: float
     weight: float
     weight: float
-    M_IN_KM: int
+    M_IN_KM: int = milli
     LEN_STEP: float = step_lenght
 
     def __init__(self, action: int, duration: float, weight: float) -> None:
