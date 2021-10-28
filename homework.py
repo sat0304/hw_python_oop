@@ -18,6 +18,7 @@ type_training: List[str] = [
     'SportsWalking',
     'Swimming']
 
+
 def trunker(number: float) -> float:
     """Функция оставляет только три цифры после запятой."""
     result: float
