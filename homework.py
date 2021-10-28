@@ -18,7 +18,7 @@ type_training: List[str] = [
     'SportsWalking',
     'Swimming']
 
-mess: List[str] = [
+m: List[str] = [
     'Тип тренировки: ',
     ';',
     ' Длительность: ',
@@ -57,9 +57,9 @@ class InfoMessage:
 
     def get_message(self) -> str:
         text: str
-        text = f"""{mess[0]}{self.training_type}{mess[1]}{mess[2]}{self.duration}{mess[3]}\
-            {mess[4]}{self.distance}{mess[5]}{mess[6]}{self.speed}{mess[7]}\
-            {mess[8]}{self.calories}{mess[9]}"""
+        text = (f"""{m[0]}{self.training_type}{m[1]}{m[2]}{self.duration}{m[3]}\
+            {m[4]}{self.distance}{m[5]}{m[6]}{self.speed}{m[7]}\
+            {m[8]}{self.calories}{m[9]}""")
         return text
 
 
@@ -85,27 +85,27 @@ class Training:
         """Получить дистанцию в км."""
         distance: float
         distance = self.action * self.LEN_STEP / self.M_IN_KM
-        return trunker(distance)
+        return distance
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         mean_speed: float
         mean_speed = self.get_distance() / self.duration
-        return trunker(mean_speed)
+        return mean_speed
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         spent_calories: float = 0.0
-        return trunker(spent_calories)
+        return spent_calories
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         message = InfoMessage(
             self.name,
-            self.duration,
-            self.get_distance(),
-            self.get_mean_speed(),
-            self.get_spent_calories())
+            trunker(self.duration),
+            trunker(self.get_distance()),
+            trunker(self.get_mean_speed()),
+            trunker(self.get_spent_calories()))
         return message
 
 
@@ -128,7 +128,7 @@ class Running(Training):
         num1 = run_coeff_1 * self.get_mean_speed() - run_coeff_2
         num2 = self.weight * self.duration * minutes
         spent_calories = num1 * num2 / self.M_IN_KM
-        return trunker(spent_calories)
+        return spent_calories
 
 
 class SportsWalking(Training):
@@ -156,7 +156,7 @@ class SportsWalking(Training):
         num2 = self.get_mean_speed() ** 2 // self.height
         num3 = walk_coeff_2 * self.weight
         spent_calories = (num1 + num2 * num3) * self.duration * minutes
-        return trunker(spent_calories)
+        return spent_calories
 
 
 class Swimming(Training):
@@ -184,7 +184,7 @@ class Swimming(Training):
         numb1: float
         numb1 = self.length_pool * self.count_pool
         mean_speed = numb1 / self.M_IN_KM / self.duration
-        return trunker(mean_speed)
+        return mean_speed
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -192,7 +192,7 @@ class Swimming(Training):
         numb2: float
         numb2 = self.get_mean_speed() + swim_coeff_1
         spent_calories = numb2 * swim_coeff_2 * self.weight
-        return trunker(spent_calories)
+        return spent_calories
 
 
 def read_package(workout_type: str, data: list) -> Training:
