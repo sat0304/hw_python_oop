@@ -47,9 +47,9 @@ class InfoMessage:
     def get_message(self) -> string:
         text: string
         text = ('Тип тренировки: ' + str(self.training_type)
-        + '; Длительность: ' + str(self.duration) + ' ч.;  Дистанция: '
-        + str(self.distance) + ' км; Ср. скорость: ' + str(self.speed)
-        + ' км/ч; Потрачено ккал: ' + str(self.calories) + '.')
+            + '; Длительность: ' + str(self.duration) + ' ч.;  Дистанция: '
+            + str(self.distance) + ' км; Ср. скорость: ' + str(self.speed)
+            + ' км/ч; Потрачено ккал: ' + str(self.calories) + '.')
         return text
 
 
