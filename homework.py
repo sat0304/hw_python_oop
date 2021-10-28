@@ -57,10 +57,8 @@ class InfoMessage:
 
     def get_message(self) -> str:
         text: str
-        text = f"""{mess[0]}{self.training_type}{mess[1]}
-            {mess[2]}{self.duration}{mess[3]}
-            {mess[4]}{self.distance}{mess[5]}
-            {mess[6]}{self.speed}{mess[7]}
+        text = f"""{mess[0]}{self.training_type}{mess[1]}{mess[2]}{self.duration}{mess[3]}\
+            {mess[4]}{self.distance}{mess[5]}{mess[6]}{self.speed}{mess[7]}\
             {mess[8]}{self.calories}{mess[9]}"""
         return text
 
