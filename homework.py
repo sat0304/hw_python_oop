@@ -13,13 +13,13 @@ swim_coeff_1: float = 1.1
 swim_coeff_2: int = 2
 
 type_training: List[str] = [
-    f'Training',
+    f"""'Training',
     'Running',
     'SportsWalking',
-    'Swimming']
+    'Swimming'"""]
 
 mess: List[str] = [
-    f'Тип тренировки: ',
+    f"""'Тип тренировки: ',
     ';',
     ' Длительность: ',
     ' ч.;',
@@ -28,10 +28,10 @@ mess: List[str] = [
     ' Ср. скорость: ',
     ' км/ч;',
     ' Потрачено ккал: ',
-    '.']
+    '.'"""]
 
 
-def trunker (number: float) -> float:
+def trunker(number: float) -> float:
     """Функция оставляет только три цифры после запятой."""
     result: float
     result = number * milli // one / milli
@@ -47,7 +47,7 @@ class InfoMessage:
     calories: float
 
     def __init__(
-            self, training_type: str, duration: float, distance: float, 
+            self, training_type: str, duration: float, distance: float,
             speed: float, calories: float) -> None:
         self.training_type = training_type
         self.duration = duration
@@ -59,7 +59,7 @@ class InfoMessage:
         text: str
         text = f"""{mess[0]}{self.training_type}{mess[1]}
             {mess[2]}{self.duration}{mess[3]}
-            {mess[4]}{self.distance}{mess[5]} 
+            {mess[4]}{self.distance}{mess[5]}
             {mess[6]}{self.speed}{mess[7]}
             {mess[8]}{self.calories}{mess[9]}"""
         return text
@@ -70,7 +70,7 @@ class Training:
     name: str
     action: int
     duration: float
-    weight: float 
+    weight: float
     weight: float
     M_IN_KM: int
     LEN_STEP: float
@@ -141,8 +141,8 @@ class SportsWalking(Training):
     weight: float
     height: float
 
-    def __init__(self, action: int, duration: float, weight: float, 
-            height: float) -> None:
+    def __init__(self, action: int, duration: float, weight: float,
+                height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
         self.height = height
@@ -171,7 +171,7 @@ class Swimming(Training):
     LEN_STEP: float
 
     def __init__(self, action: int, duration: float, weight: float,
-            length_pool: int, count_pool: int) -> None:
+                length_pool: int, count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
@@ -218,7 +218,7 @@ if __name__ == '__main__':
     packages = [
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
-        ('WLK', [9000, 1, 75, 180]),]
+        ('WLK', [9000, 1, 75, 180])]
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
