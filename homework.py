@@ -141,8 +141,9 @@ class SportsWalking(Training):
     weight: float
     height: float
 
-    def __init__(self, action: int, duration: float, weight: float,
-        height: float) -> None:
+    def __init__(
+            self, action: int, duration: float, weight: float,
+            height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
         self.height = height
@@ -170,8 +171,9 @@ class Swimming(Training):
     count_pool: int
     LEN_STEP: float
 
-    def __init__(self, action: int, duration: float, weight: float,
-        length_pool: int, count_pool: int) -> None:
+    def __init__(
+            self, action: int, duration: float, weight: float,
+            length_pool: int, count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
