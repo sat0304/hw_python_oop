@@ -191,6 +191,8 @@ def read_package(workout_type: str, data: list) -> Training:
                 return training
             else:
                 raise RuntimeError('Неизвестный вид тренировки')
+        finally: 
+            print ()
 
 
 def main(training: Training) -> None:
