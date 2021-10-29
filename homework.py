@@ -26,8 +26,11 @@ class InfoMessage:
     speed: float
     calories: float
 
-    def __init__(self, training_type: str, duration: float, distance: float,
-                 speed: float, calories: float) -> None:
+    def __init__(self, training_type: str,
+                 duration: float,
+                 distance: float,
+                 speed: float,
+                 calories: float) -> None:
         self.training_type = training_type
         self.duration = duration
         self.distance = distance
@@ -52,7 +55,9 @@ class Training:
     M_IN_KM: int = MILLI
     LEN_STEP: float = STEP_LENGTH
 
-    def __init__(self, action: int, duration: float, weight: float) -> None:
+    def __init__(self, action: int,
+                 duration: float,
+                 weight: float) -> None:
         self.name = type_training[0]
         self.action = action
         self.duration = duration
@@ -95,7 +100,9 @@ class Running(Training):
     duration: float
     weight: float
 
-    def __init__(self, action: int, duration: float, weight: float) -> None:
+    def __init__(self, action: int,
+                 duration: float,
+                 weight: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[1]
 
@@ -118,7 +125,9 @@ class SportsWalking(Training):
     weight: float
     height: float
 
-    def __init__(self, action: int, duration: float, weight: float,
+    def __init__(self, action: int,
+                 duration: float,
+                 weight: float,
                  height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
@@ -147,8 +156,11 @@ class Swimming(Training):
     count_pool: int
     LEN_STEP: float = FLIPPER_LENGTH
 
-    def __init__(self, action: int, duration: float, weight: float,
-                 length_pool: int, count_pool: int) -> None:
+    def __init__(self, action: int,
+                 duration: float,
+                 weight: float,
+                 length_pool: int,
+                 count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
