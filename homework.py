@@ -27,11 +27,11 @@ class InfoMessage:
     calories: float
 
     def __init__(self,
-                training_type: str,
-                duration: float,
-                distance: float,
-                speed: float,
-                calories: float) -> None:
+            training_type: str,
+            duration: float,
+            distance: float,
+            speed: float,
+            calories: float) -> None:
         self.training_type = training_type
         self.duration = duration
         self.distance = distance
@@ -57,9 +57,9 @@ class Training:
     LEN_STEP: float = STEP_LENGTH
 
     def __init__(self,
-                action: int,
-                duration: float,
-                weight: float) -> None:
+            action: int,
+            duration: float,
+            weight: float) -> None:
         self.name = type_training[0]
         self.action = action
         self.duration = duration
@@ -103,9 +103,9 @@ class Running(Training):
     weight: float
 
     def __init__(self,
-                action: int,
-                duration: float,
-                weight: float) -> None:
+            action: int,
+            duration: float,
+            weight: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[1]
 
@@ -129,10 +129,10 @@ class SportsWalking(Training):
     height: float
 
     def __init__(self,
-                action: int,
-                duration: float,
-                weight: float,
-                height: float) -> None:
+            action: int,
+            duration: float,
+            weight: float,
+            height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
         self.height = height
@@ -161,11 +161,11 @@ class Swimming(Training):
     LEN_STEP: float = FLIPPER_LENGTH
 
     def __init__(self,
-                action: int,
-                duration: float,
-                weight: float,
-                length_pool: int,
-                count_pool: int) -> None:
+            action: int,
+            duration: float,
+            weight: float,
+            length_pool: int,
+            count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
@@ -201,13 +201,13 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking,
         'SWM': Swimming}
-    try:
-        for sport in sports:
+    for sport in sports:
+        try:
             if sport == workout_type:
                 training = sports[sport](*data)
                 return training
-    except:
-        raise RuntimeError('Неизвестный вид тренировки')
+        except:
+            raise RuntimeError('Неизвестный вид тренировки')
 
 
 def main(training: Training) -> None:
