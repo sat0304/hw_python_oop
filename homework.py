@@ -27,7 +27,7 @@ class InfoMessage:
     calories: float
 
     def __init__(self, training_type: str, duration: float, distance: float,
-            speed: float, calories: float) -> None:
+                speed: float, calories: float) -> None:
         self.training_type = training_type
         self.duration = duration
         self.distance = distance
@@ -119,7 +119,7 @@ class SportsWalking(Training):
     height: float
 
     def __init__(self, action: int, duration: float, weight: float,
-            height: float) -> None:
+                height: float) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[2]
         self.height = height
@@ -148,7 +148,7 @@ class Swimming(Training):
     LEN_STEP: float = FLIPPER_LENGTH
 
     def __init__(self, action: int, duration: float, weight: float,
-            length_pool: int, count_pool: int) -> None:
+                length_pool: int, count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.name = type_training[3]
         self.length_pool = length_pool
@@ -189,10 +189,8 @@ def read_package(workout_type: str, data: list) -> Training:
             if sport == workout_type:
                 training = sports[sport](*data)
                 return training
-            else:
-                raise RuntimeError('Неизвестный вид тренировки')
-        finally: 
-            print ()
+        except ValueError:
+            raise ValueError('Неизвестный вид тренировки')
 
 
 def main(training: Training) -> None:
